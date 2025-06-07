@@ -1,7 +1,7 @@
 package com.BackyardBirdsNC.RESTful_CRUD_API.bird;
 
 import jakarta.persistence.Entity;
-import jakarta.peristence.GeneratedValue;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;

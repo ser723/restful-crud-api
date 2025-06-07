@@ -1,18 +1,13 @@
 package com.BackyardBirdsNC.RESTful_CRUD_API.bird;
 
+
 import java.io.IOException;
 import java.io.File;
 
-import org.hibernate.boot.model.internal.Nullability;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import.org.springframework.beans.factory.annotation.Autowired;
-import.org.springframework.sterotype.Service;
-import.org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import jakarta.annotation.Nullable;
 
 /** BirdService is a service class that handles the business logic for
  *  managing birds. 
@@ -59,7 +54,7 @@ public class BirdService {
      * @return List of students with the specified major
      */
     public Object getBirdsBySpecies(String species) {
-        return birdRepository.getStudentsByMajor(species);
+        return this.birdRepository.getBirdsBySpecies(species);
     }
 
     /**
@@ -100,25 +95,29 @@ public class BirdService {
     public String writeJson(Bird bird) {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
-            return objectMapper.writeValue(new File("birds.json"), bird);
-        } catch (IOException e){
+            objectMapper.writeValue(new File("birds.json"), bird);
+            return "Bird written to JSON file successfully";
+        } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return "Error writing bird to JSON file";
+        }
+
+    }
             /**
-             * Mehtod to read a bird object from a JSON file
+             * Method to read a bird object from a JSON file
              * 
-             * @return The bird oject read from the JSON file
-             * */
+             *  The bird oject read from the JSON file
+            */
             public Object readJson() {
                 ObjectMapper objectMapper = new ObjectMapper();
                 try{
                     return objectMapper.readValue(new File("birds.json"),Bird.class);
-                }catch (IOException e){
-                e.printStrackTracce();
-                return null;
+                } catch (IOException e) {
+                    e.printStackTrace(); 
+                    return null;
                 }
+
             }
-        
-        
+            
     }
 

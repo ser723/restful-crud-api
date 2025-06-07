@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BirdRepository extends JpaRepository <Bird, Long> {
+public interface BirdRepository extends JpaRepository <Bird, Long> {
     
     List<Bird> getBirdsBySpecies(String species);
 
@@ -15,4 +15,8 @@ public class BirdRepository extends JpaRepository <Bird, Long> {
 
     @Query(value = "select * from birds b where b.name like %?1% ", nativeQuery = true)
     List<Bird> getBirdsByName(String name);
+
+    public Object getBirdsBySpeciesObject(String species);
+
+   
 }

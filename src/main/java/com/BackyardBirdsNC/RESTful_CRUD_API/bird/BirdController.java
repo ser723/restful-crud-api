@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BirdController {
 
     @Autowired
-    private birdService birdService;
+    private BirdService birdService;
     
     /**
      * Endpoint to get all birds
@@ -39,8 +39,8 @@ public class BirdController {
      * @return The bird with the specified ID
      */
     @GetMapping("/birds/{id}")
-    public Bird getBirdById(@PathVariable long id){
-        return birdService.getBirdById(id);
+    public Object getBirdById(@PathVariable long id){
+        return birdService.getBirdByID(id);
     }
     /**
      * Endpoint to get birds by name
@@ -94,18 +94,18 @@ public Object addBird(@RequestBody Bird bird) {
  * 
  * @param id The ID of the bird to update
  * @param bird The updated bird information
- * @return The updated student 
+ * @return The updated bird
  */
 @PutMapping("/birds/{id}")
-public Bird updateBird(@PathVariable Long id, @RequestBody Bird bird) {
-    birdBird.updateBird(id, bird);
-    return birdService.getBirdById(id);
+public Object updateBird(@PathVariable Long id, @RequestBody Bird bird) {
+    birdService.updateBird(id, bird);
+    return birdService.getBirdByID(id);
 }
 /**
  * Endpoint to delete a bird
  * 
  * @parm id The ID of the bird to delete
- * @return List of all students
+ * @return List of all birds
  */
 @DeleteMapping("/birds/{id}")
 public Object deleteBird(@PathVariable Long id) {
