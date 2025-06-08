@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BirdController {
 
     @Autowired
-    private BirdService birdService;
+    private BirdService birdService = new BirdService();
     
     /**
      * Endpoint to get all birds
@@ -74,7 +74,7 @@ public Object getBirdsBySpecies(@PathVariable String species) {
  */
 @GetMapping("/birds/lifespan")
 public Object getBirdsLifeSpan(@RequestParam(name = "lifespan", defaultValue = "4.0")double lifespan) {
-    return new ResponseEntity<>(birdService.getBirdsLifeSpan(lifespan), HttpStatus.OK);
+    return new ResponseEntity<>(birdService.getLifeSpan(lifespan), HttpStatus.OK);
 
 }
 

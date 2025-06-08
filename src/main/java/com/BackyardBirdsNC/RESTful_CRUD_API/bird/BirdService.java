@@ -63,7 +63,7 @@ public class BirdService {
      * @param lifespan the threshold
      * @return the list of matching birds
      */
-    public Object getBirdsLifeSpan(double lifespan) {
+    public Object getLifeSpan(double lifespan) {
         return birdRepository.getBirdsLifeSpan(lifespan);
     }
     /** Method to add a new bird

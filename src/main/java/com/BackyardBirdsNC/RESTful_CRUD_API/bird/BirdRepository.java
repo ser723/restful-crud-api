@@ -7,16 +7,16 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BirdRepository extends JpaRepository <Bird, Long> {
-    
-    List<Bird> getBirdsBySpecies(String species);
 
-    @Query(value = "select * from birds b where b.species >= ?1", nativeQuery = true)
-    List<Bird> getBirdsLifeSpan(double lifespan);
+    List<Bird> findBySpecies(String species);
 
-    @Query(value = "select * from birds b where b.name like %?1% ", nativeQuery = true)
+    @Query(value = "SELECT FROM Birds b WHERE b.species =?1", nativeQuery = true)
+    List<Bird>  getBirdsBySpecies(String species);
+
+    @Query(value = "SELECT FROM Birds b WHERE b.name like %?1% ", nativeQuery = true)
     List<Bird> getBirdsByName(String name);
 
-    public Object getBirdsBySpeciesObject(String species);
+    @Query(value = "SELECT FROM Birds b WHERE b.lifespan", nativeQuery = true)
+    List<Bird> getBirdsLifeSpan(double lifespan);
 
-   
 }
