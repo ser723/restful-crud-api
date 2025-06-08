@@ -34,7 +34,7 @@ public class BirdService {
      * @param birdId The Id of the bird to retrieve
      * @return The bird with the specified ID
      */
-    public Object getBirdByID(@PathVariable long birdId){
+    public Object getBirdById(@PathVariable long birdId){
         return birdRepository.findById(birdId).orElse(null);
     }
 
