@@ -3,20 +3,20 @@ package com.BackyardBirdsNC.RESTful_CRUD_API.bird;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 /**BirdController is a REST controller that handles HTTP requests related to 
  * birds
  * It provides endpoints for CRUD operations on bird data
  */
-@RestController
+// @RestController
+@Controller
 public class BirdController {
 
     @Autowired
@@ -28,8 +28,11 @@ public class BirdController {
      * @return List of all birds
      */
     @GetMapping("/birds")
-    public Object getAllBirds(){
-        return birdService.getAllBirds();
+    public Object getAllBirds(Model model){
+     //   return birdService.getAllBirds();
+     model.addAttribute("birdsList",birdService.getAllBirds());
+     model.addAttribute("title", "All Birds");
+     return "birds-list";
     }
 
     /**
@@ -39,9 +42,13 @@ public class BirdController {
      * @return The bird with the specified ID
      */
     @GetMapping("/birds/{id}")
-    public Object getBirdById(@PathVariable long id){
-        return birdService.getBirdById(id);
+    public Object getBirdById(@PathVariable long id, Model model) {
+       //return birdService.getBirdById(id);
+        model.addAttribute("bird",birdService.getBirdById(id));
+        model.addAttribute("title", "Bird #: " + id);
+        return "bird-details";
     }
+
     /**
      * Endpoint to get birds by name
      * 
@@ -49,13 +56,16 @@ public class BirdController {
      * @return List of students with the specified name
      */
     @GetMapping("/birds/name")
-    public Object getBirdsByName(@RequestParam String key) {
+    public Object getBirdsByName(@RequestParam String key, Model model) {
         if(key != null){
-            return birdService.getBirdsByName(key);
-        } else{
-            return birdService.getAllBirds();
+            model.addAttribute("birdsList", birdService.getBirdsByName(key));
+            model.addAttribute("title", "Birds By Name: " + key);
+            return "birds-list";
+        } else {
+            return "redirect:/birds/";
         }
     }
+
 /**
  * Endpoint to get birds my speicies
  * 
@@ -63,9 +73,14 @@ public class BirdController {
  * @return List of birds in a certain species
  */
 @GetMapping ("/birds/species/{species}")
-public Object getBirdsBySpecies(@PathVariable String species) {
-    return birdService.getBirdsBySpecies(species);
+public Object getBirdsBySpecies(@PathVariable String species, Model model) {
+    //return birdService.getBirdsBySpecies(species);
+    model.addAttribute("birdList", birdService.getBirdsBySpecies(species));
+    model.addAttribute("title", "Birds By Species: " + species);
+    return "birds-list";
+
 }
+
 /**
  * Endpoint to get lifespan of birds within a specified threshold
  * 
@@ -79,15 +94,30 @@ public Object getBirdsLifeSpan(@RequestParam(name = "lifespan", defaultValue = "
 }
 
 /**
+ * Endpoint to show the create form for a new bird
+ * 
+ * @param model The model to add attributes to 
+ * @return The view name for the create form
+ */
+
+@GetMapping ("/birds/creatFrom")
+public Object showCreateForm(Model model) {
+    Bird bird = new Bird();
+    model.addAttribute("bird", bird);
+    model.addAttribute("title", "Create New Bird");
+    return "birds-create";
+}
+
+/**
  * Endpoint to add a new bird
  * 
  * @param bird The bird to add
  * @return List of all birds
  */
 @PostMapping("/birds")
-public Object addBird(@RequestBody Bird bird) {
-    birdService.addBird(bird);
-    return birdService.getAllBirds();
+public Object addBird(Bird bird) {
+   Bird newBird = birdService.addBird(bird);
+    return "redirect:/birds/"+newBird.getBirdId();
 }
 
 /**
@@ -97,7 +127,8 @@ public Object addBird(@RequestBody Bird bird) {
  * @param bird The updated bird information
  * @return The updated bird
  */
-@PutMapping("/birds/{id}")
+// @PutMapping("/birds/{id}")
+@PostMapping("/birds/update/{id}")
 public Object updateBird(@PathVariable Long id, @RequestBody Bird bird) {
     birdService.updateBird(id, bird);
     return birdService.getBirdById(id);
@@ -108,7 +139,8 @@ public Object updateBird(@PathVariable Long id, @RequestBody Bird bird) {
  * @parm id The ID of the bird to delete
  * @return List of all birds
  */
-@DeleteMapping("/birds/{id}")
+// @DeleteMapping("/birds/{id}")
+@GetMapping("birds/delete/{id}")
 public Object deleteBird(@PathVariable Long id) {
     birdService.deleteBird(id);
     return birdService.getAllBirds();
