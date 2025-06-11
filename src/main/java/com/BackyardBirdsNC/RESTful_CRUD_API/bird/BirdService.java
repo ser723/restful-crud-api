@@ -9,7 +9,6 @@ import java.nio.file.StandardCopyOption;
 import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.JpaSort.Path;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
@@ -138,7 +137,7 @@ public class BirdService {
     if (bird == null) {
       return; // Bird not found, nothing to delete
     }
-    Path filePath = (Path) Paths.get(UPLOAD_DIR + bird.getProfilePicturePath());
+    java.nio.file.Path filePath = Paths.get(UPLOAD_DIR + bird.getProfilePicturePath());
     try {
       Files.deleteIfExists((java.nio.file.Path) filePath);
     } catch (IOException e) {

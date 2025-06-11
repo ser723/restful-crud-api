@@ -1,8 +1,3 @@
-<h5> class="card-header">$(bird.name
-    //follow private Entites
-    //save and restart server) </h5h>
-
-
 
     <!doctype html>
 <html lang="en">
@@ -44,19 +39,16 @@
     <h1>${title}</h1>
     <div class = "card">
         <h5 class = "card header">${bird.name}</h5>
-        <img src="/profile=pictures/${(bird.profilePicturePath)!avatar.png}" class = "card-img-top"
+        <img src="/profile-pictures/${(bird.profilePicturePath)!'avatar.png'}" class = "card-img-top"
             style ="height: 100px," alt="profile picture">
             <div class="card body">
-                <span style = "float:right"><a href= "/birds/updateForm/${bird.birdId?c}" class= "btn btn-primary">Edit
-                    Student</a></span>
-                <h5> class = "card-title">ID: ${bird.birdId?c}</h5>
+                <span style = "float:right"><a href= "/birds/updateForm/${bird.birdId?c}" class= "btn btn-primary">Edit Bird</a></span>
+                <h5 class = "card-title">ID: ${bird.birdId?c}</h5>
                 <p class = "card-text">Name: ${bird.name}</p>
                 <p class = "card-text">Species: ${bird.species}</p>
                 <p class = "card-text">LifeSpan: ${bird.lifeSpan}</p>
-                <a hreft = "/birds/delete/${bird.birdId?c}" class = "btn btn-danger"> delete
-                    Student</a>
-
-                    <a href = "/birds" class="btn btn-primary"> Go back</a>
+                <a href = "/birds/delete/${bird.birdId?c}" class = "btn btn-danger"> Delete Bird</a>
+                <a href = "/birds" class="btn btn-primary"> Go back</a>
             </div>
      </body>
 </html>

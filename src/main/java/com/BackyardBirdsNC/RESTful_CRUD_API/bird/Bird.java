@@ -17,7 +17,7 @@ public class Bird {
     private String description;
     private String species;
     private double lifespan;
-
+    private String profilePicturePath;
     public Bird() {
     }
 
@@ -26,6 +26,7 @@ public class Bird {
         this.name = name;
         this.description = description;
         this.lifespan = lifespan;
+        this.profilePicturePath = profilePicturePath;
     }
 
     public Bird( String name, String description, String species, double lifespan) {
@@ -33,6 +34,7 @@ public class Bird {
         this.description = description;
         this.species = species;
         this.lifespan =lifespan;
+        this.profilePicturePath = profilePicturePath;
     }
 
     public Long getBirdId() {
@@ -74,15 +76,15 @@ public class Bird {
     public void setLifeSpan(double lifespan) {
         this.lifespan = lifespan;
     }
-
-    public void setProfilePicturePath(String fileName) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setProfilePicturePath'");
-    }
-
+    
     public String getProfilePicturePath() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getProfilePicturePath'");
+        return profilePicturePath;
     }
+
+    public void setProfilePicturePath(String profilePicturePath) {
+        this.profilePicturePath = profilePicturePath;
+    }
+
+ 
 
 }
