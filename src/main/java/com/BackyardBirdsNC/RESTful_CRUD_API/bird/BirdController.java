@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**BirdController is a REST controller that handles HTTP requests related to 
  * birds
@@ -115,9 +116,24 @@ public Object showCreateForm(Model model) {
  * @return List of all birds
  */
 @PostMapping("/birds")
-public Object addBird(Bird bird) {
-   Bird newBird = birdService.addBird(bird);
-    return "redirect:/birds/"+newBird.getBirdId();
+public Object addBird(Bird bird, @RequestParam MultipartFile picture) {
+   Bird newBird = birdService.addBird(bird, picture);
+    return "redirect:/birds/"+ newBird.getBirdId();
+}
+
+/**
+ * Endpoint to show the update form for a student
+ * 
+ * @param id The ID of the bird to update
+ * @param model  The model to add attributes to
+ * @return The view name for the update form
+ */
+@GetMapping("/birds/updateForm/{id}")
+public Object showUpdateForm(@PathVariable Long id, Model model) {
+    Object bird = birdService.getBirdById(id);
+    model.addAttribute("bird", bird);
+    model.addAttribute("title", "Update Bird: " + id);
+    return "birds-update";
 }
 
 /**
@@ -129,9 +145,10 @@ public Object addBird(Bird bird) {
  */
 // @PutMapping("/birds/{id}")
 @PostMapping("/birds/update/{id}")
-public Object updateBird(@PathVariable Long id, @RequestBody Bird bird) {
-    birdService.updateBird(id, bird);
-    return birdService.getBirdById(id);
+public Object updateBird(@PathVariable Long id, Bird bird, @RequestParam MultipartFile picture) {
+    birdService.updateBird(id, bird, picture);
+    //return birdService.getBirdById(id);
+    return "redirect:/birds/" + id;
 }
 /**
  * Endpoint to delete a bird
@@ -143,7 +160,8 @@ public Object updateBird(@PathVariable Long id, @RequestBody Bird bird) {
 @GetMapping("birds/delete/{id}")
 public Object deleteBird(@PathVariable Long id) {
     birdService.deleteBird(id);
-    return birdService.getAllBirds();
+    //return birdService.getAllBirds();
+    return "redirect:/birds/" + id;
 }
 
 /**

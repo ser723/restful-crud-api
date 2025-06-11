@@ -18,6 +18,8 @@
 		</style>
   </head>
   <body>
+
+    <!--Begin Nav Bar-->>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -27,7 +29,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
 
-                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:3002/src/index.html" class="learn-more-button">Home</a>
+                <a class="nav-link active" aria-current="page" href="/birds">Home</a>
+
                 <a class="nav-link active" aria-current="page" href="http://127.0.0.1:3002/src/details.html" class="learn-more-button">Featured-Eastern Bluebird</a>
                  <a class="nav-link active" aria-current="page" href="http://127.0.0.1:3002/src/about.html" class="learn-more-button">About</a>
             
@@ -35,23 +38,25 @@
         </div>
     </div>
 </nav>
+<!--End Nav Bar-->>
 
+<div class = "container" style="margin-top:15px;">
+    <h1>${title}</h1>
+    <div class = "card">
+        <h5 class = "card header">${bird.name}</h5>
+        <img src="/profile=pictures/${(bird.profilePicturePath)!avatar.png}" class = "card-img-top"
+            style ="height: 100px," alt="profile picture">
+            <div class="card body">
+                <span style = "float:right"><a href= "/birds/updateForm/${bird.birdId?c}" class= "btn btn-primary">Edit
+                    Student</a></span>
+                <h5> class = "card-title">ID: ${bird.birdId?c}</h5>
+                <p class = "card-text">Name: ${bird.name}</p>
+                <p class = "card-text">Species: ${bird.species}</p>
+                <p class = "card-text">LifeSpan: ${bird.lifeSpan}</p>
+                <a hreft = "/birds/delete/${bird.birdId?c}" class = "btn btn-danger"> delete
+                    Student</a>
 
-   <img src="https://images.squarespace-cdn.com/content/v1/653ab97baabdf455835892a9/50d516a9-32d9-4a92-a3d1-2a15af441cb4/bluebird_280-scaled+on+branch.jpg" id="Eastern Bluebird" width="365" height="342"
-   > 
-</p>
-    <br>
-     <br>
-    <h4><b>Eastern Bluebird</b></h4>
-    <p>Sialia</p>
-    <br>
-    <p>
-        <li class="is-active" data-accordion-item=""><a class="accordion-title" href="#" aria-controls="7ekhlv-accordion" id="7ekhlv-accordion-label" aria-expanded="true">Cool Facts</a><div class="accordion-content" data-tab-content="" aria-labelledby="7ekhlv-accordion-label" aria-hidden="false" id="7ekhlv-accordion" style="display: block;" role="region"><ul><li>The male Eastern Bluebird displays at his nest cavity to attract a female. He brings nest material to the hole, goes in and out, and waves his wings while perched above it. That is pretty much his contribution to nest building; only the female Eastern Bluebird builds the nest and incubates the eggs. </li><li>Eastern Bluebirds typically have more than one successful brood per year. Young produced in early nests usually leave their parents in summer, but young from later nests frequently stay with their parents over the winter.  </li><li>Eastern Bluebirds occur across eastern North America and south as far as Nicaragua. Birds that live farther north and in the west of the range tend to lay more eggs than eastern and southern birds. </li><li>Eastern Bluebirds eat mostly insects, wild fruit and berries. Occasionally, Eastern Bluebirds have also been observed capturing and eating larger prey items such as shrews, salamanders, snakes, lizards and tree frogs. </li><li>The oldest recorded Eastern Bluebird was at least 10 years, 6 months old. It had been banded in New York in May 1989, and was found dead in South Carolina November 1999.</li></ul></div></li>
-    </p>
-
-    <br>
-    <br>
-    https://www.allaboutbirds.org/guide/Eastern_Bluebird/overview
-    </p>
+                    <a href = "/birds" class="btn btn-primary"> Go back</a>
+            </div>
      </body>
 </html>

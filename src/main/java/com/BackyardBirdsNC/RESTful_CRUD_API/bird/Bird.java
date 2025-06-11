@@ -75,4 +75,14 @@ public class Bird {
         this.lifespan = lifespan;
     }
 
+    public void setProfilePicturePath(String fileName) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setProfilePicturePath'");
+    }
+
+    public String getProfilePicturePath() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getProfilePicturePath'");
+    }
+
 }

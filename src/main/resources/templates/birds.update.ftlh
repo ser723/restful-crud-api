@@ -1,16 +1,55 @@
-ln 48 hard coded birds
-update to <tr></tr> to enhanced for loop
+<!DOCTYPE html>
+<html lang="en">
 
-<#list birdList as bird>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">${animal.name}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">${.type}</h6>
-        <p class="card-text">${animal.description}</p>
-        <a href="#" class="card-link">View</a>
-</div>
-</div>
-</#list>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <title>Bird List</title>
 
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
 
-ln 56 <a>href="birds/$bird.birdId)" style="color: black>$birds.birdID}</a>
+<body>
+
+  <!-- Begin Nav Bar -->
+  <nav class="navbar navbar-expand-lg  navbar-dark" style="background-color: #799351;">
+    <a class="navbar-brand" href="/birds" style="margin: 10px;">
+      <img src="/logo.jpg" alt="" width="80" height="60">
+    </a>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="/birds">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Second</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Third</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container" style="margin-top: 15px;">
+    <h1>${title}</h1>
+    <img src="/profile-pictures/${(bird.profilePicturePath)!'avatar.png'}" class="card-img-top"
+      style="height: 100px; width: 100px;" alt="profile picture">
+    <form id="new-bird" action="/birds/update/${bird.birdId?c}" method="post" enctype="multipart/form-data">
+      <input type="text" id="birdId" name="birdId" value="${bird.birdId?c}" readonly />
+      <input type="text" id="name" name="name" value="${bird.name}" placeholder="Name" />
+      <input type="text" id="species" name="species" value="${bird.species}" placeholder="Species" />
+      <input type="number" id="lifespan" name="lifespan" step="0.01" value="${bird.lifespan}" placeholder="LifeSpan" /><br>
+      <label for="profilePicturePath" class="form-label">Current Picture</label>
+      <input type="text" id="profilePicturePath" name="profilePicturePath" value="${(bird.profilePicturePath)}" readonly />
+      <input type="file" id="picture" name="picture" />
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="/birds/${bird.birdId?c}" class="btn btn-outline-danger">Cancel</a>
+    </form>
+
+  </div>
+</body>
+
+</html>

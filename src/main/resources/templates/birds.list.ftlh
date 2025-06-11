@@ -31,9 +31,11 @@
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/birds">Home</a>
             </li>
-            <div class="navbar-nav">
-                
+            <li class = "nav-item">
                 <a class="nav-link active" aria-current="page" href="http://127.0.0.1:3002/src/details.html" class="learn-more-button">Featured-Eastern Bluebird</a>
+            
+            </li>
+                
                 <a class="nav-link active" aria-current="page" href="http://127.0.0.1:3002/src/about.html" class="learn-more-button">About</a>
             </div>
         </div>
@@ -57,107 +59,36 @@
     </div>
 </div>
 
-<div id="cards-container">
-  <ion-card>
-    <ion-img src="https://via.placeholder.com/150"></ion-img>
-  </ion-card>
-  <ion-card>
-    <ion-img src="https://via.placeholder.com/150"></ion-img>
-  </ion-card>
-  <ion-card>
-    <ion-img src="https://via.placeholder.com/150"></ion-img>
-  </ion-card>
-  <ion-card>
-    <ion-img src="https://via.placeholder.com/150"></ion-img>
-  </ion-card>
-  <ion-card>
-    <ion-img src="https://via.placeholder.com/150"></ion-img>
-  </ion-card>
-</div>
+<div class="container" style="margin-top: 15px;">
+    <h1>${title}</h1>
+    <a href="/birdss/createForm" class="btn btn-outline-primary" style="float:right;">Create New Bird</a>
 
-<div class="card">
-  <br>
-  <img src="https://t4.ftcdn.net/jpg/03/52/35/99/360_F_352359980_Dymu5k3peC2vG7OxzzklQeVxYB6L5Q49.jpg" id= "Northern Cardinal"width="365" height="342">
-  <div class="container">
-    <br>
-    <h4><b>Northern Cardinal</b></h4>
-    <p>Cardinalis</p>
-    <a href="details.html" class="learn-more-button">Learn more</a>
-    <br>
-    <br>
-  </div>
-</div>
-<br>
+    <form action="/birds/name">
+        <input type="text" name="key" placeholder="Search By Name &#128270;">
+    </form>
 
-<div class="card">
-  <br>
-  <img src="https://images.squarespace-cdn.com/content/v1/653ab97baabdf455835892a9/50d516a9-32d9-4a92-a3d1-2a15af441cb4/bluebird_280-scaled+on+branch.jpg" id="Eastern Bluebird" width="365" height="342">
-  <div class="container">
-    <br>
-    <h4><b>Eastern Bluebird</b></h4>
-    <p>Sialia</p>
-    <a href="details.html" class="learn-more-button">Learn more</a>
-    <br>
-    <br>
-  </div>
-</div>
-<br>
+    <!-- Birds Table -->
+    <table class="table table-striped rounded-3 overflow-hidden">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Species</th>
+        </tr>
+        <#list birdsList as bird>
+        <tr>
+            <td>
+                <a href="/birds/${bird.birdId?c}" style="color:#000000">${bird.birdId?c}</a>
+            </td>
+            <td>${bird.name}</td>
+            <td>
+                <a href="/birds/species/${bird.species}" style="color:#000000">${bird.species}</a>
+            </td>
+        </tr>
+        </#list>
+    </table>
 
-<div class="card">
-  <br>
-  <img src="https://www.innonmillcreek.com/wp-content/uploads/redbelliedwoodpecker-1024x700.jpg" id="Red-Bellied Woodpecker" width="365" height="342"">
-  <br>
-  <div class="container">
-    <h4><b>Red-Bellied Woodpecker</b></h4>
-    <p> Melanerpes Carolinus</p>
-    <a href="details.html" class="learn-more-button">Learn more</a>
-    <br>
-    <br>
-  </div>
-</div>
-<br>
 
-<div class="card">
-  <br>
-  <img src="https://thebirdfoodstore.com/wp-content/uploads/2023/04/blue-jay.jpg"id="Blue Jay" width="365" height="342"">
-  <div class="container">
-    <br>
-    <h4><b>Blue Jay</b></h4>
-    <p>Cyanocitta Cristata</p>
-    <a href="details.html" class="learn-more-button">Learn more</a>
-    <br>
-    <br>
-  </div>
-</div>
-<br>
 
-<div class="card">
-  <br>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjG4sKLl4v81lC5xIfgV7VQpgZ_FiYuYZudQ&s" id= "Barred Owl" width="365" height="342">
-  <div class="container">
-    <br>
-    <h4><b>Barred Owl</b></h4>
-    <p>Strix Varia</p>
-    <a href="details.html" class="learn-more-button">Learn more</a>
-    <br>
-    <br>
-  </div>
-</div>
-<br>
-
-<div class="card">
-  <br>
-  <img src="https://championsforwildlife.org/wp-content/uploads/2021/03/7538D4D2-6D3D-4495-AE65-1EED4E293DAF_1_105_c.jpeg" id="Ruby-Throated Hummingbird" width="365" height="342"">
-  <div class="container">
-    <br>
-    <h4><b>Ruby-Throated Hummingbird</b></h4>
-    <p>Archilochus Colubris</p>
-    <a href="details.html" class="learn-more-button">Learn more</a>
-    <br>
-    <br>
-  </div>
-</div>
-<br>
 
   </body>
 </html>
